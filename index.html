@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>TikTok OAuth Demo</title>
+  <!-- วาง meta verification ของ TikTok ตรงนี้ -->
+  <style>body{font-family:system-ui,Arial;padding:40px;max-width:680px;margin:auto}</style>
+</head>
+<body>
+  <h1>TikTok OAuth Demo</h1>
+  <p>Click to start the TikTok login flow.</p>
+
+  <a id="login" href="#">Continue with TikTok</a>
+
+  <script>
+    const clientKey = 'aw15r4brt44es6jm';
+    const redirectUri = encodeURIComponent(
+      'https://n8n-onrender-taqf.onrender.com/rest/oauth2-credential/callback'
+    );
+
+    const scopes = ['user.info.basic', 'user.info.profile'];
+    const scope = encodeURIComponent(scopes.join(' ')); // หรือ join(',') ก็ได้
+
+    const state = 'demo_' + Math.random().toString(36).slice(2);
+
+    const authUrl =
+      `https://www.tiktok.com/auth/authorize/?client_key=${clientKey}` +
+      `&response_type=code&scope=${scope}&redirect_uri=${redirectUri}&state=${state}`;
+
+    document.getElementById('login').href = authUrl;
+  </script>
+
+  <p><a href="/privacy.html">Privacy Policy</a> • <a href="/terms.html">Terms</a></p>
+</body>
+</html>
